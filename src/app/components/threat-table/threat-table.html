@@ -1,0 +1,30 @@
+<p>threat-table works!</p>
+<table>
+    <thead>
+        <tr>
+      <th>ID</th>
+      <th>Threat Name</th>
+      <th>Severity Level</th>
+      <th>Action</th>
+      </tr>
+
+     </thead>
+    <tbody>
+        
+            @if(incidents.length === 0){
+                <tr>
+                    <td colspan="4">all clear no incidients</td>
+                </tr>
+            }@else{
+                @for(item of incidents;track item.id){
+                <tr>
+                     <td>[{{item.id}}]</td>
+                     <td>[{{item.title}}]</td>
+                     <td>[{{item.severity}}]</td>
+                     <td><button (click)="resolveincident(item.id)">Resolve</button></td>
+                </tr>
+                }
+            }
+    </tbody>
+
+</table>

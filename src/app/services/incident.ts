@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { max } from 'rxjs';
 
 @Injectable({
   providedIn: 'root' // This metadata makes the service accessible globally via Dependency Injection
@@ -22,8 +23,12 @@ export class IncidentService {
     this.incidentsList = this.incidentsList.filter(item => item.id !== idToDelete);
   }
   addIncident(newTitle: string, seve: string) {
+    
+    const existingIds = this.incidentsList.map(item => item.id);
+    const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
     const newIncident = { 
-      id: Date.now(),          // Generates a unique numeric ID automatically
+     
+      id: maxId + 1,
       title: newTitle,         // Uses the string passed from the component
       severity: seve     // Enclosed in quotes because it's a string literal
     };

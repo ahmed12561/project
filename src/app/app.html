@@ -23,19 +23,4 @@
 <h3>Active Threat Log</h3>
 
 
-@if (incidents.length === 0) {
-  <p style="color: green;"><strong>✓ All clear. No active threats detected.</strong></p>
-} @else {
-  <ul>
-    @for (item of incidents; track item.id) {
-      <li style="margin-bottom: 8px;">
-        <strong>[{{ item.severity }}]</strong> {{ item.title }}
-        
-        <!-- Row Action: Passes this specific incident's ID to the method -->
-        <button (click)="resolveincident(item.id)" style="margin-left: 10px;">
-          Resolve
-        </button>
-      </li>
-    }
-  </ul>
-}
+<app-threat-table></app-threat-table>
