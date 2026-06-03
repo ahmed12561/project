@@ -1,0 +1,41 @@
+<h1>Risk Compliance Sandbox</h1>
+<app-threat-form (onThreatCreated)="createNewThreat($event.title,$event.severity)"></app-threat-form>
+<hr>
+
+
+<p><strong>Current User Role:</strong> {{ userRole }}</p>
+<p><strong>Security Status:</strong> {{ appStatus }}</p>
+
+<hr>
+
+
+<h3>System Controls</h3>
+<button [disabled]="isSystemLocked">Initiate Global Audit</button>
+
+
+<button (click)="togglelock()">
+  {{ isSystemLocked ? 'Unlock System' : 'Lock System' }}
+</button>
+
+<hr>
+
+
+<h3>Active Threat Log</h3>
+
+
+@if (incidents.length === 0) {
+  <p style="color: green;"><strong>✓ All clear. No active threats detected.</strong></p>
+} @else {
+  <ul>
+    @for (item of incidents; track item.id) {
+      <li style="margin-bottom: 8px;">
+        <strong>[{{ item.severity }}]</strong> {{ item.title }}
+        
+        <!-- Row Action: Passes this specific incident's ID to the method -->
+        <button (click)="resolveincident(item.id)" style="margin-left: 10px;">
+          Resolve
+        </button>
+      </li>
+    }
+  </ul>
+}

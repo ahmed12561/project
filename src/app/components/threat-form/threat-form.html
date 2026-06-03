@@ -1,0 +1,12 @@
+<p>threat-form works!</p>
+<div>
+  <h3>Report New Threat Record</h3>
+  <input #threatInput type="text" placeholder="Enter incident name...">
+  <select #severity>
+  <option value="High">High Severity</option>
+  <option value="Medium">Medium Severity</option>
+  <option value="Low">Low Severity</option>
+  </select>
+
+  <button (click)="submitForm(threatInput.value,severity.value)">Log Incident</button>
+</div>
